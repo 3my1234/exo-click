@@ -1,4 +1,4 @@
-﻿# Exo Portal (Compliant Bridge)
+# Exo Portal (Compliant Bridge)
 
 Mobile-first Next.js 16 bridge page with transparent consent, unlock flow, runtime config API, and safe redirect validation.
 

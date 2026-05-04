@@ -1,4 +1,4 @@
-﻿const DEFAULT_DEST = "https://example.com";
+const DEFAULT_DEST = "https://example.com";
 
 function normalizeHost(value: string): string {
   return value.trim().toLowerCase();

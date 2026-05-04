@@ -1,4 +1,4 @@
-﻿import { getAllowedDestinationHosts, getDefaultDestination } from "./redirect";
+import { getAllowedDestinationHosts, getDefaultDestination } from "./redirect";
 
 export type RuntimeConfig = {
   monetizationUrl: string;

@@ -1,4 +1,4 @@
-﻿import BridgePortal from "@/components/bridge-portal";
+import BridgePortal from "@/components/bridge-portal";
 import { sanitizeDestination } from "@/lib/redirect";
 
 type HomeProps = {

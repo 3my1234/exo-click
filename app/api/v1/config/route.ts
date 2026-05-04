@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getRuntimeConfig } from "@/lib/config";
 
 export async function GET() {
