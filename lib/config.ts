@@ -6,6 +6,8 @@ export type RuntimeConfig = {
   exoPopHost: string;
   exoSyndicationHost: string;
   exoPopZoneId: string;
+  exoInterstitialHost: string;
+  exoInterstitialZoneId: string;
   defaultDestination: string;
   allowlist: string[];
 };
@@ -17,6 +19,8 @@ export function getRuntimeConfig(): RuntimeConfig {
     exoPopHost: process.env.NEXT_PUBLIC_EXO_POP_HOST ?? "",
     exoSyndicationHost: process.env.NEXT_PUBLIC_EXO_SYNDICATION_HOST ?? "",
     exoPopZoneId: process.env.NEXT_PUBLIC_EXO_POP_ZONE_ID ?? "",
+    exoInterstitialHost: process.env.NEXT_PUBLIC_EXO_INTERSTITIAL_HOST ?? "",
+    exoInterstitialZoneId: process.env.NEXT_PUBLIC_EXO_INTERSTITIAL_ZONE_ID ?? "",
     defaultDestination: getDefaultDestination(),
     allowlist: getAllowedDestinationHosts()
   };

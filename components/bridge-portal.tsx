@@ -8,6 +8,8 @@ type RuntimeConfig = {
   exoPopHost: string;
   exoSyndicationHost: string;
   exoPopZoneId: string;
+  exoInterstitialHost: string;
+  exoInterstitialZoneId: string;
   defaultDestination: string;
   allowlist: string[];
 };
@@ -24,6 +26,7 @@ declare global {
     ad_trigger_method?: number;
     ad_trigger_delay?: number;
     ad_capping_enabled?: boolean;
+    AdProvider?: Array<{ serve: Record<string, never> }>;
   }
 }
 
@@ -117,10 +120,33 @@ export default function BridgePortal({ initialDest }: { initialDest: string }) {
   };
 
   const handleContinue = () => {
+    if (runtime?.exoInterstitialHost && runtime?.exoInterstitialZoneId) {
+      const existing = document.querySelector("script[data-exo-interstitial='true']");
+      if (!existing) {
+        const ins = document.createElement("ins");
+        ins.className = "eas6a97888e35";
+        ins.setAttribute("data-zoneid", runtime.exoInterstitialZoneId);
+        ins.style.display = "none";
+        document.body.appendChild(ins);
+
+        const script = document.createElement("script");
+        script.async = true;
+        script.type = "application/javascript";
+        script.src = `https://${runtime.exoInterstitialHost}/ad-provider.js`;
+        script.dataset.exoInterstitial = "true";
+        document.body.appendChild(script);
+      }
+
+      window.AdProvider = window.AdProvider || [];
+      window.AdProvider.push({ serve: {} });
+    }
+
     if (runtime?.monetizationUrl) {
       window.open(runtime.monetizationUrl, "_blank", "noopener,noreferrer");
     }
-    window.location.href = finalHref;
+    window.setTimeout(() => {
+      window.location.href = finalHref;
+    }, 700);
   };
 
   return (
