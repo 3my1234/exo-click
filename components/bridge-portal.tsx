@@ -5,9 +5,27 @@ import { useEffect, useMemo, useState } from "react";
 type RuntimeConfig = {
   monetizationUrl: string;
   interstitialId: string;
+  exoPopHost: string;
+  exoSyndicationHost: string;
+  exoPopZoneId: string;
   defaultDestination: string;
   allowlist: string[];
 };
+
+declare global {
+  interface Window {
+    ad_idzone?: string;
+    ad_popup_fallback?: boolean;
+    ad_popup_force?: boolean;
+    ad_chrome_enabled?: boolean;
+    ad_new_tab?: boolean;
+    ad_frequency_period?: number;
+    ad_frequency_count?: number;
+    ad_trigger_method?: number;
+    ad_trigger_delay?: number;
+    ad_capping_enabled?: boolean;
+  }
+}
 
 const TESTIMONIALS = [
   { user: "@nova_stream", text: "Preview loaded quickly and the unlock worked." },
@@ -26,6 +44,7 @@ export default function BridgePortal({ initialDest }: { initialDest: string }) {
   const [showInterstitial, setShowInterstitial] = useState(false);
   const [liveViewers, setLiveViewers] = useState(10240);
   const [runtime, setRuntime] = useState<RuntimeConfig | null>(null);
+  const [popReady, setPopReady] = useState(false);
 
   useEffect(() => {
     fetch("/api/v1/config")
@@ -63,6 +82,29 @@ export default function BridgePortal({ initialDest }: { initialDest: string }) {
 
     return () => window.clearInterval(id);
   }, [started, progress]);
+
+  useEffect(() => {
+    if (!started || popReady || !runtime?.exoPopZoneId || !runtime?.exoPopHost) return;
+
+    window.ad_idzone = runtime.exoPopZoneId;
+    window.ad_popup_fallback = false;
+    window.ad_popup_force = false;
+    window.ad_chrome_enabled = true;
+    window.ad_new_tab = false;
+    window.ad_frequency_period = 1440;
+    window.ad_frequency_count = 1;
+    window.ad_trigger_method = 1;
+    window.ad_trigger_delay = 0;
+    window.ad_capping_enabled = true;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.type = "application/javascript";
+    script.src = `https://${runtime.exoPopHost}/popunder1000.js`;
+    script.dataset.exoLoaded = "true";
+    document.body.appendChild(script);
+    setPopReady(true);
+  }, [started, popReady, runtime]);
 
   const finalHref = useMemo(() => {
     const encoded = encodeURIComponent(initialDest);
