@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 type RuntimeConfig = {
@@ -205,6 +206,43 @@ export default function BridgePortal({ initialDest }: { initialDest: string }) {
           ))}
         </ul>
       </section>
+
+      <section className="mt-4 rounded-xl border border-slate-800 bg-slate-900/70 p-4">
+        <h2 className="text-lg font-semibold text-amber-300">Sports Media Updates</h2>
+        <p className="mt-2 text-sm text-slate-300">
+          SportBanter curates football and sports entertainment updates for global fans who want faster access to
+          headlines, transfer movement, and match-day context. Our editorial format prioritizes clear summaries, core
+          facts, and a short insight section so readers can quickly decide which stories they want to follow in depth.
+          This page is part of that access flow and includes account safety prompts, consent checks, and destination
+          controls before outbound navigation.
+        </p>
+        <p className="mt-3 text-sm text-slate-300">
+          In addition to breaking updates, our coverage model includes competition snapshots, tactical talking points,
+          and player trend notes that help readers understand why a result or rumor matters. We focus on major leagues,
+          continental tournaments, and high-interest fixtures where audience demand changes rapidly around kickoff,
+          injury announcements, and official team news drops.
+        </p>
+        <p className="mt-3 text-sm text-slate-300">
+          We also maintain user protection standards for redirects, advertising integrations, and destination controls.
+          External links are validated against configured hosts, and the experience is designed for mobile-first use
+          where most fans discover new content. For support or policy questions, users can review our legal pages below
+          and contact us directly.
+        </p>
+      </section>
+
+      <footer className="mt-6 border-t border-slate-800 pt-4 text-xs text-slate-400">
+        <div className="flex flex-wrap items-center gap-3">
+          <Link href="/privacy-policy" className="hover:text-amber-300">
+            Privacy Policy
+          </Link>
+          <Link href="/terms" className="hover:text-amber-300">
+            Terms of Service
+          </Link>
+          <Link href="/contact" className="hover:text-amber-300">
+            Contact
+          </Link>
+        </div>
+      </footer>
 
       {showInterstitial ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/95 p-6">
