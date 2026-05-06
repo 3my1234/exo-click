@@ -210,23 +210,32 @@ export default function BridgePortal({ initialDest }: { initialDest: string }) {
       <section className="mt-4 rounded-xl border border-slate-800 bg-slate-900/70 p-4">
         <h2 className="text-lg font-semibold text-amber-300">Sports Media Updates</h2>
         <p className="mt-2 text-sm text-slate-300">
-          SportBanter curates football and sports entertainment updates for global fans who want faster access to
-          headlines, transfer movement, and match-day context. Our editorial format prioritizes clear summaries, core
-          facts, and a short insight section so readers can quickly decide which stories they want to follow in depth.
-          This page is part of that access flow and includes account safety prompts, consent checks, and destination
-          controls before outbound navigation.
+          SportBanter publishes daily football coverage focused on match previews, transfer developments, and team form
+          across the Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, UEFA competitions, and major African
+          fixtures. Our briefings are written for fans who want fast context before kickoff: expected lineups, tactical
+          matchups, set-piece trends, and injury updates that could swing results.
         </p>
+        <div className="mt-3 rounded-lg border border-slate-800 bg-slate-950/60 p-3">
+          <h3 className="text-sm font-semibold text-amber-200">Today&apos;s Editorial Focus</h3>
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-300">
+            <li>Title race pressure points and projected points pace for top-four contenders.</li>
+            <li>Midfield control matchups: pressing triggers, rest-defense shape, and transition risk.</li>
+            <li>Transfer watch: contract expiring players, loan recalls, and late-window value targets.</li>
+            <li>Injury bulletin: likely absences, return timelines, and replacement role impact.</li>
+          </ul>
+        </div>
+        <div className="mt-3 rounded-lg border border-slate-800 bg-slate-950/60 p-3">
+          <h3 className="text-sm font-semibold text-amber-200">Recent Matchday Snapshot</h3>
+          <p className="mt-2 text-sm text-slate-300">
+            Weekend analysis highlighted increased high turnovers in final-third pressing systems, improved defensive
+            compactness among away sides using a narrow 4-4-2 block, and a rise in late goals from bench impact
+            substitutions. Clubs with stable buildup structures continued to create higher-quality chances against low
+            blocks compared with direct long-ball approaches.
+          </p>
+        </div>
         <p className="mt-3 text-sm text-slate-300">
-          In addition to breaking updates, our coverage model includes competition snapshots, tactical talking points,
-          and player trend notes that help readers understand why a result or rumor matters. We focus on major leagues,
-          continental tournaments, and high-interest fixtures where audience demand changes rapidly around kickoff,
-          injury announcements, and official team news drops.
-        </p>
-        <p className="mt-3 text-sm text-slate-300">
-          We also maintain user protection standards for redirects, advertising integrations, and destination controls.
-          External links are validated against configured hosts, and the experience is designed for mobile-first use
-          where most fans discover new content. For support or policy questions, users can review our legal pages below
-          and contact us directly.
+          We maintain clear user safeguards: outbound destinations are validated, consent is explicit, and service
+          policies are publicly available through the legal links below.
         </p>
       </section>
 
